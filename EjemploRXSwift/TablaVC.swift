@@ -24,7 +24,7 @@ class TablaVC:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colores = ["Rojo","Azul","Verde","Negro","Gris","Amarillo"]
+        colores = ["Rojo Sangre","Azul Cielo","Verde Naturaleza","Negro Muerte","Gris Ni Blanco ni Negro","Amarillo Sol", "Rojo Pasión", "Azul Mar", "Verde moco", "Negro Oscuridad", "Amarillo enfermo"]
         coloresMostrados = colores
         
         // Hacemos observable la variable del searchBar
