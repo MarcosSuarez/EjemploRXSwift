@@ -26,6 +26,24 @@ class TablaVC:UIViewController {
         
         colores = ["Rojo","Azul","Verde","Negro","Gris","Amarillo"]
         coloresMostrados = colores
+        
+        // Hacemos observable la variable del searchBar
+        let textoBarraRx = self.searchBar.rx.text
+        
+        textoBarraRx
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe { (evento) in
+                
+                if let miEvento = evento.element as? String, !miEvento.isEmpty {
+                    self.coloresMostrados = self.colores.filter({ $0.uppercased().hasPrefix(miEvento.uppercased()) })
+                } else {
+                    self.coloresMostrados = self.colores
+                }
+                self.tabla.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
     }
 }
 
