@@ -22,7 +22,8 @@ class TablaVC:UIViewController {
     
     
     // RX
-    private let colorSeleccionadoVariable = Variable("Usuario")
+    //private let colorSeleccionadoVariable = Variable("Ninguno")
+    private let colorSeleccionadoVariable = BehaviorRelay(value: "Ninguno")
     
     var colorSeleccionado:Observable<String> {
         return colorSeleccionadoVariable.asObservable()
@@ -77,7 +78,10 @@ extension TablaVC: UITableViewDataSource, UITableViewDelegate {
         
         let textoSeleccionado = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
         print("texto seleccionado: ", textoSeleccionado)
-        colorSeleccionadoVariable.value = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
+        
+        // RX
+        //colorSeleccionadoVariable.value = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
+        colorSeleccionadoVariable.accept(textoSeleccionado) // Actualizado
         
     }
     

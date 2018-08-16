@@ -65,20 +65,27 @@ class ViewController: UIViewController {
         
     } // end setupObservables
     
+    
+    
+    
     @IBAction func irAtablaColores(_ sender: Any) {
         performSegue(withIdentifier: "irTablaColores", sender: self)
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "irTablaColores" {
+            
             let tablaVC = segue.destination as? TablaVC
+            
             // RX
             tablaVC?.colorSeleccionado
-                .subscribe(onNext: { [weak self] colorSeleccionado in
-                    self?.labelColorSeleccionado.text = "Color Seleccionado: \(colorSeleccionado)"
+                .subscribe(onNext: { [weak self] colorRecibido in
+                    self?.labelColorSeleccionado.text = "Color Seleccionado: \(colorRecibido)"
                 })
-            .disposed(by: disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 }
