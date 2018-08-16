@@ -24,6 +24,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var slider: UISlider!
     
+    @IBOutlet weak var labelColorSeleccionado: UILabel!
+    
+    
     // Control para evitar ciclos de retención
     // Todas la variables Rx deben estar registradas aquí.
     let disposeBag = DisposeBag()
@@ -62,7 +65,21 @@ class ViewController: UIViewController {
         
     } // end setupObservables
     
+    @IBAction func irAtablaColores(_ sender: Any) {
+        performSegue(withIdentifier: "irTablaColores", sender: self)
+    }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "irTablaColores" {
+            let tablaVC = segue.destination as? TablaVC
+            // RX
+            tablaVC?.colorSeleccionado
+                .subscribe(onNext: { [weak self] colorSeleccionado in
+                    self?.labelColorSeleccionado.text = "Color Seleccionado: \(colorSeleccionado)"
+                })
+            .disposed(by: disposeBag)
+        }
+    }
 }
 

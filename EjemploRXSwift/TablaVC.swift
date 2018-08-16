@@ -21,6 +21,16 @@ class TablaVC:UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     
+    // RX
+    private let colorSeleccionadoVariable = Variable("Usuario")
+    
+    var colorSeleccionado:Observable<String> {
+        return colorSeleccionadoVariable.asObservable()
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +58,7 @@ class TablaVC:UIViewController {
 }
 
 
-extension TablaVC: UITableViewDataSource {
+extension TablaVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coloresMostrados.count
@@ -61,6 +71,14 @@ extension TablaVC: UITableViewDataSource {
         cell.textLabel?.text = coloresMostrados[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let textoSeleccionado = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
+        print("texto seleccionado: ", textoSeleccionado)
+        colorSeleccionadoVariable.value = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
+        
     }
     
     

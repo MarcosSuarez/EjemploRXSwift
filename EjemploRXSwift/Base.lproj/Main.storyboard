@@ -63,13 +63,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0V-eL-I3R">
-                                <rect key="frame" x="300" y="617" width="59" height="30"/>
+                                <rect key="frame" x="183" y="617" width="176" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="TABLA"/>
+                                <state key="normal" title="TABLA DE COLORES"/>
                                 <connections>
-                                    <segue destination="pbx-3h-KA9" kind="show" id="eaO-HF-qrq"/>
+                                    <action selector="irAtablaColores:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Ht-Dn-GLP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Seleccionado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hR-sN-8sF">
+                                <rect key="frame" x="113.5" y="415" width="148.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -79,6 +85,8 @@
                             <constraint firstItem="hsj-Jd-zuA" firstAttribute="top" secondItem="O6l-jd-4VS" secondAttribute="bottom" constant="15.5" id="Mzk-I0-ccq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1m4-2D-Wjb" secondAttribute="trailing" constant="24" id="QPo-gg-8xQ"/>
                             <constraint firstItem="hsj-Jd-zuA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="Sob-3P-y9N"/>
+                            <constraint firstItem="3hR-sN-8sF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UsN-SR-1z5"/>
+                            <constraint firstItem="3hR-sN-8sF" firstAttribute="top" secondItem="hsj-Jd-zuA" secondAttribute="bottom" constant="34.5" id="iFB-IY-N6l"/>
                             <constraint firstItem="1m4-2D-Wjb" firstAttribute="top" secondItem="WT4-KE-GdS" secondAttribute="bottom" constant="24" id="nX1-gX-V6c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WT4-KE-GdS" secondAttribute="trailing" constant="24" id="o9P-lX-jlm"/>
                             <constraint firstItem="WT4-KE-GdS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="65" id="tLD-0h-BAs"/>
@@ -91,10 +99,12 @@
                     <connections>
                         <outlet property="btnPresionar" destination="woT-K2-BJo" id="Xau-qn-ebZ"/>
                         <outlet property="labelBtnPresionar" destination="Gph-ts-64a" id="x9c-ub-T0F"/>
+                        <outlet property="labelColorSeleccionado" destination="3hR-sN-8sF" id="DGp-Pf-Igj"/>
                         <outlet property="labelSlider" destination="O6l-jd-4VS" id="bn6-HS-umd"/>
                         <outlet property="labelSwitch" destination="6cN-Nz-b69" id="UMG-5S-bYs"/>
                         <outlet property="slider" destination="hsj-Jd-zuA" id="85c-Ib-A9j"/>
                         <outlet property="swicth" destination="M7R-Gk-HRL" id="ddi-cy-wiP"/>
+                        <segue destination="pbx-3h-KA9" kind="show" identifier="irTablaColores" id="dy1-Wn-7Mb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -137,6 +147,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="pbx-3h-KA9" id="LOt-st-ml1"/>
+                                    <outlet property="delegate" destination="pbx-3h-KA9" id="dMK-eo-cjf"/>
                                 </connections>
                             </tableView>
                         </subviews>
