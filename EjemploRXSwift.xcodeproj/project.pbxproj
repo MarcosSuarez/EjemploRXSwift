@@ -12,6 +12,7 @@
 		8D3BCC012122D3570037EFB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3BCBFF2122D3570037EFB2 /* Main.storyboard */; };
 		8D3BCC032122D3580037EFB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3BCC022122D3580037EFB2 /* Assets.xcassets */; };
 		8D3BCC062122D3580037EFB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3BCC042122D3580037EFB2 /* LaunchScreen.storyboard */; };
+		8D75CEDD212590FA0092AFAA /* TablaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75CEDC212590FA0092AFAA /* TablaVC.swift */; };
 		F978AA3656914A98344C43B6 /* Pods_EjemploRXSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F2E84B86C2327275F3B8E0 /* Pods_EjemploRXSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		8D3BCC022122D3580037EFB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D3BCC052122D3580037EFB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D3BCC072122D3590037EFB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D75CEDC212590FA0092AFAA /* TablaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablaVC.swift; sourceTree = "<group>"; };
 		C8F2E84B86C2327275F3B8E0 /* Pods_EjemploRXSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EjemploRXSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 			children = (
 				8D3BCBFB2122D3570037EFB2 /* AppDelegate.swift */,
 				8D3BCBFD2122D3570037EFB2 /* ViewController.swift */,
+				8D75CEDC212590FA0092AFAA /* TablaVC.swift */,
 				8D3BCBFF2122D3570037EFB2 /* Main.storyboard */,
 				8D3BCC022122D3580037EFB2 /* Assets.xcassets */,
 				8D3BCC042122D3580037EFB2 /* LaunchScreen.storyboard */,
@@ -204,6 +207,7 @@
 			files = (
 				8D3BCBFE2122D3570037EFB2 /* ViewController.swift in Sources */,
 				8D3BCBFC2122D3570037EFB2 /* AppDelegate.swift in Sources */,
+				8D75CEDD212590FA0092AFAA /* TablaVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

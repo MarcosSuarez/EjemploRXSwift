@@ -49,21 +49,20 @@ class ViewController: UIViewController {
         observarSliderValue
             .map{ Int($0) }
             .map({ (valor) -> String in
-                self.labelSlider.frame.origin = CGPoint(x: self.labelSlider.frame.origin.x, y: self.labelSlider.frame.origin.y)
                 return valor.description
             })
             .bind(to: labelSlider.rx.text)
             .disposed(by: disposeBag)
     
+        
         let observarSwithState = swicth.rx.isOn
             .subscribe(onNext: { (isOn) in
                 self.labelSwitch.text = isOn ? "El swicth esta en On" : "El swicth esta en Off"
             })
         
-        
-        
-        
     } // end setupObservables
+    
+    
 
 }
 
