@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var btnPresionar: UIButton!
     
     @IBOutlet weak var labelBtnPresionar: UILabel!
@@ -41,8 +41,8 @@ class ViewController: UIViewController {
         ejemplosBasicos()
         setupObservables()
     }
-
-
+    
+    
     func setupObservables() {
         
         let observarSliderValue = slider.rx.value
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             })
             .bind(to: labelSlider.rx.text)
             .disposed(by: disposeBag)
-    
+        
         
         let observarSwithState = swicth.rx.isOn
             .subscribe(onNext: { (isOn) in
@@ -143,7 +143,7 @@ class ViewController: UIViewController {
         
         // Ejemplo PublishSubject
         print("\n --- Ejemplo PublishSubject --- \n")
-        var sujetoPublico = PublishSubject<String>()
+        let sujetoPublico = PublishSubject<String>()
         
         sujetoPublico.onNext("Hola")
         sujetoPublico.onNext("Como te va")
@@ -160,6 +160,7 @@ class ViewController: UIViewController {
         Observable<Int>.of(1,2,3,4)
             .map { value in return value * 10 }
             .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         
         // FLATMAP
         print("\n --- FLATMAP ---")
@@ -170,12 +171,14 @@ class ViewController: UIViewController {
         sequenceOfSequences
             .flatMap{ return $0 }
             .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         
         // SCAN -> Se parece al reduce en Swift
         print("\n --- SCAN ---")
         Observable.of(1,2,3,4,5)
             .scan(0) { seed, value in return seed + value }
             .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         
         // BUFFER:
         print("\n --- BUFFER ---")
@@ -187,11 +190,19 @@ class ViewController: UIViewController {
         
         // FILTER:
         print("\n --- FILTER ---")
-        Observable.of(2,30,22,5,60,1).filter{$0 > 10}.subscribe(onNext:{ print($0) })
+        Observable
+            .of(2,30,22,5,60,1)
+            .filter{$0 > 10}
+            .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         
         // DistinctUntilChanged
         print("\n --- DistinctUntilChanged ---")
-        Observable.of(1,2,2,1,3).distinctUntilChanged().subscribe(onNext:{ print($0) })
+        Observable
+            .of(1,2,2,1,3)
+            .distinctUntilChanged()
+            .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         
         // Debounce
         
@@ -202,13 +213,21 @@ class ViewController: UIViewController {
         
         // COMBINE
         print("\n --- COMBINE StartWith ---")
-        Observable.of(2,3).startWith(1).subscribe(onNext:{ print($0) })
+        Observable.of(2,3)
+            .startWith(1)
+            .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
         print("\n --- COMBINE Merge ---")
         
         let publish1 = PublishSubject<Int>()
         let publish2 = PublishSubject<Int>()
         // combina multiples observables respetando en tiempo en que crean
-        Observable.of(publish1,publish2).merge().subscribe(onNext:{ print($0) })
+        Observable
+            .of(publish1,publish2)
+            .merge()
+            .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
+        
         publish1.onNext(20)
         publish1.onNext(40)
         publish1.onNext(60)
@@ -237,6 +256,33 @@ class ViewController: UIViewController {
             .do(onNext: { $0 * 10 // This has no effect on the actual subscription
             })
             .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
+        
+        
+        // SCHEDULER -> In RxSwift you use schedulers to force operators do their work on a specific queue.
+        print("\n --- SCHEDULER ---")
+        // Existen 5 tipos.
+        
+        // 1.- MainScheduler
+        // 2.- CurrentThreadScheduler
+        // 3.- SerialDispatchQueueScheduler
+        // 4.- ConcurrentDispatchQueueScheduler
+        // 5.- OperationQueueScheduler
+        
+        let publish81 = PublishSubject<Int>()
+        let publish82 = PublishSubject<Int>()
+        let concurrentScheduler = ConcurrentDispatchQueueScheduler(qos: .background)
+        
+        Observable.of(publish81,publish82)
+            .observeOn(concurrentScheduler)
+            .merge()
+            .subscribeOn(MainScheduler())
+            .subscribe(onNext:{ print($0) })
+            .disposed(by: disposeBag)
+        
+        publish81.onNext(20)
+        publish81.onNext(40)
+        
         
     } // End Ejemplos básicos.
 }
